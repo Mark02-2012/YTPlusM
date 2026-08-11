@@ -88,19 +88,37 @@ on:
        default: false
 
       enable_ycq:
-       description: "NEW! Integrate YouChooseQuality (YTPlusM)"
+       description: "Integrate YouChooseQuality (YTPlusM)"
        type: boolean
        required: true
        default: false
 
       enable_ys:
-       description: "NEW! Integrate YouShare (YTPlusM)"
+       description: "Integrate YouShare (YTPlusM)"
        type: boolean
        required: true
        default: false
 
       enable_pdstm:
-       description: "NEW! Integrate PleaseDontStopTheMusic (YTPlusM)"
+       description: "Integrate PleaseDontStopTheMusic (YTPlusM)"
+       type: boolean
+       required: true
+       default: false
+
+      enable_youloop:
+       description: "Integrate YouLoop (YTPlusM)"
+       type: boolean
+       required: true
+       default: false
+
+      enable_youmute:
+       description: "Integrate YouMute (YTPlusM)"
+       type: boolean
+       required: true
+       default: false
+
+      enable_ytlocalqueue:
+       description: "Integrate YTLocalQueue (YTPlusM)"
        type: boolean
        required: true
        default: false
@@ -160,6 +178,9 @@ jobs:
       enable_ycq: ${{ inputs.enable_ycq }}
       enable_ys: ${{ inputs.enable_ys }}
       enable_pdstm: ${{ inputs.enable_pdstm }}
+      enable_youloop: ${{ inputs.enable_youloop }}
+      enable_youmute: ${{ inputs.enable_youmute }}
+      enable_ytlocalqueue: ${{ inputs.enable_ytlocalqueue }}
       tweak_version: ${{ inputs.tweak_version }}
 
 
@@ -186,7 +207,7 @@ jobs:
       - name: Hide sensitive inputs
         uses: levibostian/action-hide-sensitive-inputs@v1
         with:
-          exclude_inputs: bundle_id,display_name,enable_demc,enable_ryd,enable_ytabc,enable_youpip,enable_yq,enable_ytuhd,enable_ytweaks,enable_gonerino,enable_youspeed,enable_ytlcm,enable_VolumeBoostYT,enable_YouGetCaption,enable_ycq,enable_ys,enable_pdstm,info_note,tweak_version
+          exclude_inputs: bundle_id,display_name,enable_demc,enable_ryd,enable_ytabc,enable_youpip,enable_yq,enable_ytuhd,enable_ytweaks,enable_gonerino,enable_youspeed,enable_ytlcm,enable_VolumeBoostYT,enable_YouGetCaption,enable_ycq,enable_ys,enable_pdstm,enable_youloop,enable_youmute,enable_ytlocalqueue,info_note,tweak_version
           
 
       - name: Download and validate IPA
@@ -215,6 +236,9 @@ jobs:
              [ "${{ inputs.enable_ycq }}" = "false" ] && \
              [ "${{ inputs.enable_ys }}" = "false" ] && \
              [ "${{ inputs.enable_pdstm }}" = "false" ] && \
+             [ "${{ inputs.enable_youloop }}" = "false" ] && \
+             [ "${{ inputs.enable_youmute }}" = "false" ] && \
+             [ "${{ inputs.enable_ytlocalqueue }}" = "false" ] && \
              [ "${{ inputs.enable_ytpfBETA }}" = "false" ]; then
             
             echo "RELEASE_PREFIX=YTPlus" >> $GITHUB_ENV
