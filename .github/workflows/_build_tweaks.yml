@@ -283,10 +283,6 @@ jobs:
       - name: Clone YouMute
         if: ${{ inputs.enable_youloop }}
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YouMute.git
-
-      - name: Clone YTLocalQueue
-        if: ${{ inputs.enable_ytlocalqueue }}
-        run: git clone --quiet --depth=1 https://github.com/bpetrynski/YTLocalQueue.git
         
       - name: Build YouPiP
         if: ${{ inputs.enable_youpip }}
@@ -417,11 +413,9 @@ jobs:
           cd YouMute && make clean package DEBUG=0 FINALPACKAGE=1
           mv packages/*.deb ../youmute.deb
 
-      - name: Build YTLocalQueue
+      - name: Download YTLocalQueue
         if: ${{ inputs.enable_ytlocalqueue }}
-        run: |
-          cd YTLocalQueue && make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
-          mv packages/*.deb ../ytlocalqueue.deb
+        run: wget "https://files.catbox.moe/i3cx62.deb"
 
       - name: Clone Open in YouTube (Safari extension)
         run: |
