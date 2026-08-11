@@ -177,7 +177,6 @@ jobs:
             echo "::error::Validation failed: The file is not a valid DEB file. Detected type: $file_type."
             exit 1
           fi
-   
 
       - name: Clone YouTubeHeader
         if: ${{ inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_yq || inputs.enable_ryd || inputs.enable_ytabc || inputs.enable_demc || inputs.enable_ytweaks || inputs.enable_gonerino || inputs.enable_youspeed || inputs.enable_YTLCM || inputs.enable_VolumeBoostYT || inputs.enable_YouGetCaption || inputs.enable_ytpf || inputs.enable_ytpfBETA || inputs.enable_ycq || inputs.enable_ys || inputs.enable_pdstm || inputs.enable_youloop || inputs.enable_youmute || inputs.enable_ytlocalqueue }}
@@ -218,7 +217,7 @@ jobs:
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YTABConfig.git
 
       - name: Clone YouGroupSettings
-        if: ${{ inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_yq || inputs.enable_ryd || inputs.enable_ytabc || inputs.enable_demc || inputs.enable_ytweaks || inputs.enable_gonerino || inputs.enable_youspeed || inputs.enable_YTLCM || inputs.enable_VolumeBoostYT || inputs.enable_YouGetCaption }}
+        if: ${{ inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_yq || inputs.enable_ryd || inputs.enable_ytabc || inputs.enable_demc || inputs.enable_ytweaks || inputs.enable_gonerino || inputs.enable_youspeed || inputs.enable_YTLCM || inputs.enable_VolumeBoostYT }}
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YouGroupSettings.git
 
       - name: Clone YouQuality
@@ -226,7 +225,7 @@ jobs:
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YouQuality.git
 
       - name: Clone YTVideoOverlay
-        if: ${{ inputs.enable_yq || inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_youspeed || inputs.enable_YouGetCaption || inputs.enable_ys }}
+        if: ${{ inputs.enable_yq || inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_youspeed || inputs.enable_YouGetCaption || inputs.enable_ys || inputs.enable_youloop || inputs.enable_youmute }}
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YTVideoOverlay.git
 
       - name: Clone DontEatMyContent
@@ -276,6 +275,18 @@ jobs:
       - name: Clone PleaseDontStopTheMusic
         if: ${{ inputs.enable_pdstm }}
         run: git clone --quiet --depth=1 https://github.com/mikey820/PleaseDontStopTheMusic.git
+
+      - name: Clone YouLoop
+        if: ${{ inputs.enable_youloop }}
+        run: git clone --quiet --depth=1 https://github.com/bhackel/YouLoop.git
+
+      - name: Clone YouMute
+        if: ${{ inputs.enable_youloop }}
+        run: git clone --quiet --depth=1 https://github.com/PoomSmart/YouMute.git
+
+      - name: Clone YTLocalQueue
+        if: ${{ inputs.enable_ytlocalqueue }}
+        run: git clone --quiet --depth=1 https://github.com/bpetrynski/YTLocalQueue.git
         
       - name: Build YouPiP
         if: ${{ inputs.enable_youpip }}
@@ -393,6 +404,24 @@ jobs:
           find . -name "packages" -type d -exec rm -rf {} + 2>/dev/null || true
           $(MAKE) -C rootless package FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless || true
           mv rootless/packages/*.deb ../pdstm.deb 2>/dev/null || true
+
+      - name: Build YouLoop
+        if: ${{ inputs.enable_youloop }}
+        run: |
+          cd YouLoop && make clean package DEBUG=0 FINALPACKAGE=1
+          mv packages/*.deb ../youloop.deb
+
+      - name: Build YouMute
+        if: ${{ inputs.enable_youmute }}
+        run: |
+          cd YouMute && make clean package DEBUG=0 FINALPACKAGE=1
+          mv packages/*.deb ../youmute.deb
+
+      - name: Build YTLocalQueue
+        if: ${{ inputs.enable_ytlocalqueue }}
+        run: |
+          cd YTLocalQueue && make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
+          mv packages/*.deb ../ytlocalqueue.deb
 
       - name: Clone Open in YouTube (Safari extension)
         run: |
