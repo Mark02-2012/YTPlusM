@@ -76,7 +76,7 @@ on:
        default: false
 
       enable_ytpf:
-       description: "Integrate YTPlaybackFix, my new tweak! (YTPlusM)"
+       description: "Integrate YTPlaybackFix, my tweak (YTPlusM)"
        type: boolean
        required: true
        default: false
@@ -106,19 +106,25 @@ on:
        default: false
 
       enable_youloop:
-       description: "Integrate YouLoop (YTPlusM)"
+       description: "NEW! Integrate YouLoop (YTPlusM)"
        type: boolean
        required: true
        default: false
 
       enable_youmute:
-       description: "Integrate YouMute (YTPlusM)"
+       description: "NEW! Integrate YouMute (YTPlusM)"
        type: boolean
        required: true
        default: false
 
       enable_ytlocalqueue:
-       description: "Integrate YTLocalQueue (YTPlusM)"
+       description: "NEW! Integrate YTLocalQueue (YTPlusM)"
+       type: boolean
+       required: true
+       default: false
+
+      enable_youtimestamp:
+       description: "NEW! Integrate YouTimeStamp (YTPlusM)"
        type: boolean
        required: true
        default: false
@@ -181,6 +187,7 @@ jobs:
       enable_youloop: ${{ inputs.enable_youloop }}
       enable_youmute: ${{ inputs.enable_youmute }}
       enable_ytlocalqueue: ${{ inputs.enable_ytlocalqueue }}
+      enable_youtimestamp: ${{ inputs.enable_youtimestamp }}
       tweak_version: ${{ inputs.tweak_version }}
 
 
@@ -239,6 +246,7 @@ jobs:
              [ "${{ inputs.enable_youloop }}" = "false" ] && \
              [ "${{ inputs.enable_youmute }}" = "false" ] && \
              [ "${{ inputs.enable_ytlocalqueue }}" = "false" ] && \
+             [ "${{ inputs.enable_youtimestamp }}" = "false" ] && \
              [ "${{ inputs.enable_ytpfBETA }}" = "false" ]; then
             
             echo "RELEASE_PREFIX=YTPlus" >> $GITHUB_ENV
