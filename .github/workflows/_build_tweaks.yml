@@ -435,8 +435,14 @@ jobs:
           cd YTLocalQueue && make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mv packages/*.deb ../ytlocalqueue.deb
 
+      - name: Link YTVideoOverlay headers for YouTimeStamp
+        if: ${{ inputs.enable_youtimestamp }}
+        run: |
+          rm -rf "$THEOS/include/YTVideoOverlay"
+          ln -s "${{ github.workspace }}/YTVideoOverlay" "$THEOS/include/YTVideoOverlay"
+
       - name: Build YouTimeStamp
-        if: ${{ inputs.enable_YouTimeStamp }}
+        if: ${{ inputs.enable_youtimestamp }}
         run: |
           cd YouTimeStamp && make clean package DEBUG=0 FINALPACKAGE=1
           mv packages/*.deb ../youtimestamp.deb
