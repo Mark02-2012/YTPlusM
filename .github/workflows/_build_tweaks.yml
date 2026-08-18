@@ -347,7 +347,8 @@ jobs:
 
       - name: Build Gonerino
         if: ${{ inputs.enable_gonerino }}
-        run: cd YGonerino && make clean package DEBUG=0 FINALPACKAGE=1
+        run: |
+          cd YGonerino && make clean package DEBUG=0 FINALPACKAGE=1
           mv packages/*.deb ../gonerino.deb
 
       - name: Build YouSpeed
