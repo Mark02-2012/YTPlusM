@@ -289,7 +289,7 @@ jobs:
         run: |
           git clone --quiet --depth=1 https://github.com/oceandrift7/YTLocalQueue.git
           mkdir -p YTLocalQueue/Headers
-          cp -R "$THEOS/include/YouTubeHeader"
+          cp -R "$THEOS/include/YouTubeHeader" "YTLocalQueue/Headers/YouTubeHeader"
         
       - name: Build YouPiP
         if: ${{ inputs.enable_youpip }}
