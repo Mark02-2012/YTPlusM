@@ -123,12 +123,6 @@ on:
        required: true
        default: false
 
-      enable_youtimestamp:
-       description: "NEW! Integrate YouTimeStamp (YTPlusM)"
-       type: boolean
-       required: true
-       default: false
-
       ipa_url:
         description: "URL to the decrypted IPA file"
         default: ""
@@ -181,7 +175,6 @@ jobs:
       enable_youloop: ${{ inputs.enable_youloop }}
       enable_youmute: ${{ inputs.enable_youmute }}
       enable_ytlocalqueue: ${{ inputs.enable_ytlocalqueue }}
-      enable_youtimestamp: ${{ inputs.enable_youtimestamp }}
       tweak_version: ${{ inputs.tweak_version }}
 
 
@@ -240,7 +233,6 @@ jobs:
              [ "${{ inputs.enable_youloop }}" = "false" ] && \
              [ "${{ inputs.enable_youmute }}" = "false" ] && \
              [ "${{ inputs.enable_ytlocalqueue }}" = "false" ] && \
-             [ "${{ inputs.enable_youtimestamp }}" = "false" ] && \
              [ "${{ inputs.enable_ytpfBETA }}" = "false" ]; then
             
             echo "RELEASE_PREFIX=YTPlus" >> $GITHUB_ENV
