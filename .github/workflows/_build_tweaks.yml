@@ -103,11 +103,6 @@ on:
        required: true
        default: false
 
-      enable_youtimestamp:
-       type: boolean
-       required: true
-       default: false
-
       tweak_version:
         type: string
         required: false
@@ -184,7 +179,7 @@ jobs:
           fi
 
       - name: Clone YouTubeHeader
-        if: ${{ inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_yq || inputs.enable_ryd || inputs.enable_ytabc || inputs.enable_demc || inputs.enable_ytweaks || inputs.enable_gonerino || inputs.enable_youspeed || inputs.enable_YTLCM || inputs.enable_VolumeBoostYT || inputs.enable_YouGetCaption || inputs.enable_ytpf || inputs.enable_ytpfBETA || inputs.enable_ycq || inputs.enable_ys || inputs.enable_pdstm || inputs.enable_youloop || inputs.enable_youmute || inputs.enable_ytlocalqueue || inputs.enable_youtimestamp }}
+        if: ${{ inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_yq || inputs.enable_ryd || inputs.enable_ytabc || inputs.enable_demc || inputs.enable_ytweaks || inputs.enable_gonerino || inputs.enable_youspeed || inputs.enable_YTLCM || inputs.enable_VolumeBoostYT || inputs.enable_YouGetCaption || inputs.enable_ytpf || inputs.enable_ytpfBETA || inputs.enable_ycq || inputs.enable_ys || inputs.enable_pdstm || inputs.enable_youloop || inputs.enable_youmute || inputs.enable_ytlocalqueue }}
         run: |
           if [ -d "$THEOS/include/YouTubeHeader" ]; then
             cd $THEOS/include/YouTubeHeader && git pull
@@ -197,7 +192,7 @@ jobs:
           fi
 
       - name: Clone PSHeader
-        if: ${{ inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_yq || inputs.enable_ryd || inputs.enable_ytabc || inputs.enable_demc || inputs.enable_ytweaks || inputs.enable_gonerino || inputs.enable_youspeed || inputs.enable_YTLCM || inputs.enable_VolumeBoostYT || inputs.enable_YouGetCaption || inputs.enable_ytpf || inputs.enable_ytpfBETA || inputs.enable_ycq || inputs.enable_ys || inputs.enable_pdstm || inputs.enable_youloop || inputs.enable_youmute || inputs.enable_ytlocalqueue || inputs.enable_youtimestamp }}
+        if: ${{ inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_yq || inputs.enable_ryd || inputs.enable_ytabc || inputs.enable_demc || inputs.enable_ytweaks || inputs.enable_gonerino || inputs.enable_youspeed || inputs.enable_YTLCM || inputs.enable_VolumeBoostYT || inputs.enable_YouGetCaption || inputs.enable_ytpf || inputs.enable_ytpfBETA || inputs.enable_ycq || inputs.enable_ys || inputs.enable_pdstm || inputs.enable_youloop || inputs.enable_youmute || inputs.enable_ytlocalqueue }}
         run: |
           if [ -d "$THEOS/include/PSHeader" ]; then
             cd $THEOS/include/PSHeader && git pull
@@ -230,7 +225,7 @@ jobs:
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YouQuality.git
 
       - name: Clone YTVideoOverlay
-        if: ${{ inputs.enable_yq || inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_youspeed || inputs.enable_YouGetCaption || inputs.enable_ys || inputs.enable_youloop || inputs.enable_youmute || inputs.enable_youtimestamp }}
+        if: ${{ inputs.enable_yq || inputs.enable_youpip || inputs.enable_ytuhd || inputs.enable_youspeed || inputs.enable_YouGetCaption || inputs.enable_ys || inputs.enable_youloop || inputs.enable_youmute }}
         run: git clone --quiet --depth=1 https://github.com/PoomSmart/YTVideoOverlay.git
 
       - name: Clone DontEatMyContent
@@ -243,7 +238,7 @@ jobs:
 
       - name: Clone Gonerino
         if: ${{ inputs.enable_gonerino }}
-        run: git clone --quiet --depth=1 https://github.com/castdrian/Gonerino.git
+        run: git clone --quiet --depth=1 https://github.com/fosterbarnes/YGonerino.git
       
       - name: Clone YouSpeed
         if: ${{ inputs.enable_youspeed }}
@@ -294,11 +289,7 @@ jobs:
         run: |
           git clone --quiet --depth=1 https://github.com/oceandrift7/YTLocalQueue.git
           mkdir -p YTLocalQueue/Headers
-          cp -R "$THEOS/include/YouTubeHeader" "YTLocalQueue/Headers/YouTubeHeader"
-
-      - name: Clone YouTimeStamp
-        if: ${{ inputs.enable_youtimestamp }}
-        run: git clone --quiet --depth=1 https://github.com/thaibm92/YouTimeStamp.git
+          cp -R "$THEOS/include/YouTubeHeader"
         
       - name: Build YouPiP
         if: ${{ inputs.enable_youpip }}
@@ -434,18 +425,6 @@ jobs:
         run: |
           cd YTLocalQueue && make clean package DEBUG=0 FINALPACKAGE=1 THEOS_PACKAGE_SCHEME=rootless
           mv packages/*.deb ../ytlocalqueue.deb
-
-      - name: Link YTVideoOverlay headers for YouTimeStamp
-        if: ${{ inputs.enable_youtimestamp }}
-        run: |
-          rm -rf "$THEOS/include/YTVideoOverlay"
-          ln -s "${{ github.workspace }}/YTVideoOverlay" "$THEOS/include/YTVideoOverlay"
-
-      - name: Build YouTimeStamp
-        if: ${{ inputs.enable_youtimestamp }}
-        run: |
-          cd YouTimeStamp && make clean package DEBUG=0 FINALPACKAGE=1
-          mv packages/*.deb ../youtimestamp.deb
 
       - name: Clone Open in YouTube (Safari extension)
         run: |
