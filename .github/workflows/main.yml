@@ -1,4 +1,4 @@
-name: Create YouTube Plus or YTPlusM app
+name: Create YouTube Plus or MaxTube app
 
 on:
   workflow_dispatch:
