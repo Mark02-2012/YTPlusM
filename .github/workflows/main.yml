@@ -237,7 +237,7 @@ jobs:
             
             echo "RELEASE_PREFIX=YTPlus" >> $GITHUB_ENV
           else
-            echo "RELEASE_PREFIX=YTPlusM" >> $GITHUB_ENV
+            echo "RELEASE_PREFIX=MaxTube" >> $GITHUB_ENV
           fi
 
       - name: Install cyan
