@@ -245,7 +245,7 @@ jobs:
 
       - name: Clone VolumeBoostYT
         if: ${{ inputs.enable_VolumeBoostYT }}
-        run: git clone --quiet --depth=1 https://github.com/VasirakCalgux/VolumeBoostYT.git
+        run: git clone --quiet --depth=1 https://github.com/candyzp/VolumeBoostYT.git
 
       - name: Clone YouGetCaption
         if: ${{ inputs.enable_YouGetCaption }}
