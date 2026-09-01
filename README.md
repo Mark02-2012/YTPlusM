@@ -210,6 +210,7 @@ Updated YouTube Plus from 5.2.1 to 5.2.2; cracked by <a href="https://www.reddit
 <li><strong>1.5 (August 24 2026):</strong></li>
 • Changed name from YTPlusM to MaxTube
 
+
 • Fixed YTLowContrastMode setting section not showing in 20.x versions.
 
 • Added YouLoop and YouMute (in Video Overlay settings).
@@ -219,6 +220,8 @@ Updated YouTube Plus from 5.2.1 to 5.2.2; cracked by <a href="https://www.reddit
 • Updated my tweak YTPlaybackFix. It is now a combination of my method (refreshing the video player when it detects the error; fixed the loop issue, incompatibility with 20.x versions of YouTube, added support for error code 0, and incompatibility with RootHide Patcher) and the method by @AppropriateNet_2928 named YouFixPlaybackIssues (spoof client and experimental PoToken bypass). Includes a setting section to enable/disable each method. Both are enabled by default.
 <li><strong>1.5.3 (August 30 2026):</strong></li>
 Replaced VolumeBoostYT by irum0320 with the fork by candyzp
+<li><strong>1.5.4 (September 1 2026):</strong></li>
+Returned to the original VolumeBoostYT tweak because the fork I used in 1.5.3 because it was buggy
 
 ## Supported YouTube Version
 <ul>
@@ -329,8 +332,8 @@ Replaced VolumeBoostYT by irum0320 with the fork by candyzp
 
 <details>
  <summary>YTPlaybackFix (only in MaxTube versions)</summary>
- <p>YTPlaybackFix is a tweak developed by me that try to fix playback issues by refreshing the video every time the error 14 appears ("something went wrong")</p>
- <p><strong>YTPlaybackFix preferences</strong> for the moment are <strong>not available</strong> as the tweak will refresh videos only if the error appears.</p>
+ <p>YTPlaybackFix is a tweak developed by me that try to fix playback issues by using my method (refreshing the video every time the error 14 and 0 appears "something went wrong") and YouFixPlaybackIssues by @AppropriateNet2928</p>
+ <p><strong>YTPlaybackFix preferences</strong> are available in the <strong>YouTube settings</strong></p>
  <p>Source code and additional information are available <a href="https://github.com/Mark02-2012/YTPlaybackFix">in my repository</a>.</p>
 </details>
 
