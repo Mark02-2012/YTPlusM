@@ -221,7 +221,7 @@ Updated YouTube Plus from 5.2.1 to 5.2.2; cracked by <a href="https://www.reddit
 <li><strong>1.5.3 (August 30 2026):</strong></li>
 Replaced VolumeBoostYT by irum0320 with the fork by candyzp
 <li><strong>1.5.4 (September 1 2026):</strong></li>
-Returned to the original VolumeBoostYT tweak because the fork I used in 1.5.3 because it was buggy
+Returned to the original VolumeBoostYT tweak because the fork used in MaxTube 1.5.3 was buggy.
 
 ## Supported YouTube Version
 <ul>
